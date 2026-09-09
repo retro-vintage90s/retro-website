@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro 舊物部 | Vintage & Archive Selection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0606;        /* 暗紅極深黑底 */
+            --card-bg: #170d0d;        /* 卡片深紅黑底 */
+            --accent-red: #8b0000;     /* Logo 同款復古深紅 */
+            --bright-red: #bc1313;     /* 高亮紅（按鈕/強調） */
+            --silver-metal: #e0e0e0;   /* 液態銀金屬色 */
+            --text-main: #f5ebe6;       /* 米白文字 */
+            --text-muted: #a38f8f;     /* 復古灰紅文字 */
+            --border-color: #2e1616;   /* 邊框暗紅線 */
+            --font-code: 'Courier Prime', monospace;
+            --font-main: 'Noto Sans TC', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; }
+
+        .announcement-bar {
+            background-color: var(--accent-red);
+            color: #fff;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-family: var(--font-code);
+            border-bottom: 1px solid var(--bright-red);
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(13, 6, 6, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { 
+            font-family: var(--font-code); 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: var(--silver-metal); 
+            text-decoration: none; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px rgba(224, 224, 224, 0.3);
+        }
+        .logo span { color: var(--bright-red); }
+
+        nav { display: flex; align-items: center; gap: 15px; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        nav a:hover { color: var(--text-main); }
+
+        .lang-switch {
+            background: transparent;
+            border: 1px solid var(--bright-red);
+            color: var(--silver-metal);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+        .lang-switch:hover {
+            background-color: var(--bright-red);
+            color: #fff;
+        }
+
+        .hero { 
+            padding: 60px 5% 40px; 
+            text-align: center; 
+            border-bottom: 1px solid var(--border-color); 
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.2) 0%, rgba(13, 6, 6, 1) 70%);
+        }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 12px; color: var(--silver-metal); letter-spacing: 2px; }
+        .hero p { color: var(--text-muted); max-width: 600px; margin: 0 auto 20px; font-size: 0.95rem; }
+        .hero-quote { font-family: var(--font-code); font-style: italic; color: var(--bright-red); font-size: 0.9rem; }
+
+        .filter-section { padding: 20px 5%; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .filter-btn { 
+            background-color: transparent; 
+            border: 1px solid var(--border-color); 
+            color: var(--text-muted); 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-family: var(--font-code); 
+            font-size: 0.85rem; 
+            transition: all 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { 
+            border-color: var(--bright-red); 
+            color: var(--silver-metal); 
+            background-color: rgba(188, 19, 19, 0.15); 
+        }
+
+        .product-grid { padding: 20px 5% 60px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .product-card { 
+            background-color: var(--card-bg); 
+            border: 1px solid var(--border-color); 
+            border-radius: 6px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--bright-red);
+        }
+
+        .product-image { width: 100%; height: 320px; background-color: #221010; object-fit: cover; }
+        .product-info { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-tag { font-family: var(--font-code); font-size: 0.75rem; color: var(--bright-red); margin-bottom: 6px; }
+        .product-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+        .product-specs { 
+            font-family: var(--font-code); 
+            font-size: 0.8rem; 
+            color: var(--text-muted); 
+            margin-bottom: 12px; 
+            background-color: rgba(0,0,0,0.4); 
+            padding: 8px; 
+            border-radius: 4px; 
+            border: 1px solid rgba(139,0,0,0.2);
+        }
+        .product-price { font-family: var(--font-code); font-size: 1.2rem; font-weight: bold; color: var(--silver-metal); margin-top: auto; margin-bottom: 12px; }
+
+        .buy-btn { 
+            background-color: var(--bright-red); 
+            color: #fff; 
+            border: none; 
+            padding: 10px; 
+            text-align: center; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 4px; 
+            display: block; 
+            transition: opacity 0.3s;
+        }
+        .buy-btn:hover { opacity: 0.9; }
+        .buy-btn.sold-out { background-color: #332222; color: #775555; cursor: not-allowed; border: 1px solid #442222; }
+
+        footer { border-top: 1px solid var(--border-color); padding: 40px 5%; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+        footer a { color: var(--bright-red); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar" id="announcement">
+        我們相信：真正的好衣服，從來不會過時，只會等對的人。
+    </div>
+
+    <header>
+        <a href="#" class="logo">RETRO<span>舊物部</span></a>
+        <nav>
+            <a href="#shop" id="nav-catalog">選品 Catalog</a>
+            <a href="https://instagram.com/retro_vintage90s" target="_blank">Instagram</a>
+            <button class="lang-switch" onclick="toggleLanguage()" id="lang-btn">English</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>RETRO 舊物部</h1>
+        <p id="hero-desc">專注於 80s - 00s 美式復古、美產丹寧與經典古着選品。每款單品僅此一件。</p>
+        <span class="hero-quote" id="hero-quote">[ 獨一無二的年代落色痕跡 ]</span>
+    </section>
+
+    <div class="filter-section" id="shop">
+        <button class="filter-btn active" id="btn-all" onclick="filterProduct('all')">ALL 全部</button>
+        <button class="filter-btn" onclick="filterProduct('90s')">90s Vintage</button>
+        <button class="filter-btn" id="btn-denim" onclick="filterProduct('denim')">Denim 丹寧</button>
+        <button class="filter-btn" id="btn-jacket" onclick="filterProduct('jacket')">Jacket 外套</button>
+    </div>
+
+    <div class="product-grid">
+        <!-- 商品 1 -->
+        <div class="product-card" data-category="90s denim jacket">
+            <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" class="product-image">
+            <div class="product-info">
+                <div class="product-tag" data-zh="90s 美產 | 狀態: A" data-en="90s Made in USA | Condition: A">90s 美產 | 狀態: A</div>
+                <div class="product-title" data-zh="90s Levi's 70507 丹寧夾克" data-en="90s Levi's 70507 Denim Jacket">90s Levi's 70507 丹寧夾克</div>
+                <div class="product-specs" data-zh="肩寬: 48cm | 胸寬: 56cm<br>衣長: 64cm | 庫存: 獨家1件" data-en="Shoulder: 48cm | Chest: 56cm<br>Length: 64cm | Stock: 1 Only">
+                    肩寬: 48cm | 胸寬: 56cm<br>衣長: 64cm | 庫存: 獨家1件
+                </div>
+                <div class="product-price">HKD $680</div>
+                <a href="https://ig.me/m/retro_vintage90s?text=Order: 90s Levi's 70507 Denim Jacket" target="_blank" class="buy-btn buy-text">DM 留貨 / 購買</a>
+            </div>
+        </div>
+
+        <!-- 商品 2 -->
+        <div class="product-card" data-category="90s jacket">
+            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80" class="product-image">
+            <div class="product-info">
+                <div class="product-tag" data-zh="80s 古着 | 狀態: B+" data-en="80s Vintage | Condition: B+">80s 古着 | 狀態: B+</div>
+                <div class="product-title" data-zh="80s 美式復古皮衣外套" data-en="80s Vintage Leather Jacket">80s 美式復古皮衣外套</div>
+                <div class="product-specs" data-zh="肩寬: 50cm | 胸寬: 58cm<br>衣長: 66cm | 庫存: 獨家1件" data-en="Shoulder: 50cm | Chest: 58cm<br>Length: 66cm | Stock: 1 Only">
+                    肩寬: 50cm | 胸寬: 58cm<br>衣長: 66cm | 庫存: 獨家1件
+                </div>
+                <div class="product-price">HKD $1,280</div>
+                <a href="https://ig.me/m/retro_vintage90s?text=Order: 80s Vintage Leather Jacket" target="_blank" class="buy-btn buy-text">DM 留貨 / 購買</a>
+            </div>
+        </div>
+
+        <!-- 商品 3 (Sold Out) -->
+        <div class="product-card" data-category="90s">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" class="product-image">
+            <div class="product-info">
+                <div class="product-tag" data-zh="90s 單針走線 | 狀態: A" data-en="90s Single Stitch | Condition: A">90s 單針走線 | 狀態: A</div>
+                <div class="product-title" data-zh="90s 樂隊印花復古 T-Shirt" data-en="90s Vintage Band Tee">90s 樂隊印花復古 T-Shirt</div>
+                <div class="product-specs" data-zh="肩寬: 45cm | 胸寬: 50cm<br>衣長: 70cm | 狀態: 已售出" data-en="Shoulder: 45cm | Chest: 50cm<br>Length: 70cm | Status: Sold Out">
+                    肩寬: 45cm | 胸寬: 50cm<br>衣長: 70cm | 狀態: 已售出
+                </div>
+                <div class="product-price">HKD $450</div>
+                <button class="buy-btn sold-out sold-text" disabled>SOLD OUT 已售罄</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>RETRO 舊物部</strong> - Instagram: <a href="https://instagram.com/retro_vintage90s" target="_blank">@retro_vintage90s</a></p>
+        <p>© 2026 Retro Vintage 90s. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentLang = 'zh';
+
+        const i18n = {
+            zh: {
+                announcement: "我們相信：真正的好衣服，從來不會過時，只會等對的人。",
+                navCatalog: "選品 Catalog",
+                heroDesc: "專注於 80s - 00s 美式復古、美產丹寧與經典古着選品。每款單品僅此一件。",
+                heroQuote: "[ 獨一無二的年代落色痕跡 ]",
+                btnAll: "ALL 全部",
+                btnDenim: "Denim 丹寧",
+                btnJacket: "Jacket 外套",
+                buyBtn: "DM 留貨 / 購買",
+                soldBtn: "SOLD OUT 已售罄",
+                langBtn: "English"
+            },
+            en: {
+                announcement: "We believe good clothes never go out of style; they just wait for the right owner.",
+                navCatalog: "Catalog",
+                heroDesc: "Curated 80s-00s Americana, US-made Denim, and Vintage Archives. One piece only.",
+                heroQuote: "[ Unique Authentic Vintage Fading ]",
+                btnAll: "ALL",
+                btnDenim: "Denim",
+                btnJacket: "Jackets",
+                buyBtn: "Buy / DM to Order",
+                soldBtn: "SOLD OUT",
+                langBtn: "中文"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            const langData = i18n[currentLang];
+
+            document.getElementById('announcement').innerText = langData.announcement;
+            document.getElementById('nav-catalog').innerText = langData.navCatalog;
+            document.getElementById('hero-desc').innerText = langData.heroDesc;
+            document.getElementById('hero-quote').innerText = langData.heroQuote;
+            document.getElementById('btn-all').innerText = langData.btnAll;
+            document.getElementById('btn-denim').innerText = langData.btnDenim;
+            document.getElementById('btn-jacket').innerText = langData.btnJacket;
+            document.getElementById('lang-btn').innerText = langData.langBtn;
+
+            document.querySelectorAll('.buy-text').forEach(btn => btn.innerText = langData.buyBtn);
+            document.querySelectorAll('.sold-text').forEach(btn => btn.innerText = langData.soldBtn);
+
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        function filterProduct(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'flex';
+                } else {
+                    const categories = card.getAttribute('data-category');
+                    if (categories && categories.includes(category)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
