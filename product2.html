@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Vintage Jacket #2 | Retro 舊物部</title>
   <style>
     :root {
@@ -14,20 +14,24 @@
       --text-muted: #e0c0c0;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     /* 頂部導航 */
     header {
       background-color: #2d0202;
       border-bottom: 2px solid var(--bright-red);
-      padding: 15px 20px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -39,37 +43,33 @@
     .back-btn {
       color: #ffcccc;
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
-    }
-
-    .back-btn:hover {
-      color: #ffffff;
+      font-size: 0.95rem;
     }
 
     .brand-title {
       font-size: 1.1rem;
       font-weight: bold;
       color: #ffffff;
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
     }
 
     /* 主內容區域 */
     .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
     }
 
     .product-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
       .product-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
       }
     }
 
@@ -77,94 +77,96 @@
     .gallery {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
     }
 
     .main-img-container {
       width: 100%;
-      height: 400px;
+      height: 380px;
       background-color: #1a0101;
       border: 1px solid #5e0808;
       border-radius: 8px;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .main-img-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* 完整顯示整張外套圖，不裁剪 */
     }
 
-    /* 打橫單排向右滑動 (Horizontal Scroll) */
+    /* 手機橫向滾動縮圖列 */
+    .thumbnails-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* 流暢滑動 */
+      padding-bottom: 6px;
+    }
+
     .thumbnails {
       display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    /* 美化滾動條 */
-    .thumbnails::-webkit-scrollbar {
-      height: 6px;
-    }
-    .thumbnails::-webkit-scrollbar-track {
-      background: #2d0202;
-      border-radius: 3px;
-    }
-    .thumbnails::-webkit-scrollbar-thumb {
-      background: #ff4d4d;
-      border-radius: 3px;
+      gap: 10px;
+      width: max-content;
     }
 
     .thumb {
-      width: 90px;
-      height: 90px;
-      min-width: 90px; /* 固定寬度防止被擠壓 */
+      width: 75px;
+      height: 75px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
       border: 2px solid #5e0808;
-      opacity: 0.75;
-      transition: opacity 0.3s, border-color 0.3s, transform 0.2s;
+      opacity: 0.6;
+      transition: opacity 0.2s, border-color 0.2s;
     }
 
-    .thumb:hover, .thumb.active {
+    .thumb.active, .thumb:active {
       opacity: 1;
-      border-color: #ffffff;
-      transform: scale(1.03);
+      border-color: #ff4d4d;
+    }
+
+    /* 美化滾動條 */
+    .thumbnails-wrapper::-webkit-scrollbar {
+      height: 4px;
+    }
+    .thumbnails-wrapper::-webkit-scrollbar-thumb {
+      background: #ff4d4d;
+      border-radius: 2px;
     }
 
     /* 商品細節資訊區 */
     .product-info {
       background-color: var(--card-bg);
-      padding: 25px;
+      padding: 20px;
       border-radius: 8px;
       border: 1px solid #5e0808;
     }
 
     .product-title {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-top: 0;
       color: #ffffff;
     }
 
     .product-price {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: #ff9999;
       font-weight: bold;
-      margin: 15px 0;
+      margin: 12px 0;
     }
 
     .details-list {
-      margin: 20px 0;
+      margin: 15px 0;
       padding-left: 20px;
       color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
     .details-list li {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     /* IG 聯絡按鈕 */
@@ -179,23 +181,16 @@
       font-size: 1rem;
       border-radius: 6px;
       text-decoration: none;
-      box-sizing: border-box;
-      margin-top: 25px;
-      transition: transform 0.2s;
-    }
-
-    .buy-btn:hover {
-      transform: scale(1.02);
+      margin-top: 20px;
     }
 
     footer {
       text-align: center;
-      padding: 25px;
-      margin-top: 50px;
+      padding: 20px;
+      margin-top: 30px;
       border-top: 1px solid #5e0808;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      background-color: #1f0101;
+      font-size: 0.8rem;
     }
 
     footer a {
@@ -215,27 +210,31 @@
   <main class="container">
     <div class="product-layout">
       
-      <!-- 左側圖片相冊 ( jacket2 的 6 張橫向滑動大縮圖 ) -->
+      <!-- 相冊展示區 -->
       <div class="gallery">
         <div class="main-img-container">
           <img id="mainImg" src="jacket2.jpg" alt="Vintage Jacket #2" onerror="this.onerror=null; this.src='jacket2.JPG';">
         </div>
-        <div class="thumbnails">
-          <img src="jacket2.jpg" class="thumb active" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket2.JPG';">
-          <img src="jacket2.-detail1.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket2.-detail1.JPG';">
-          <img src="jacket2.-detail2.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket2.-detail2.JPG';">
-          <img src="jacket2.-detail3.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket2.-detail3.JPG';">
-          <img src="jacket2.-detail4.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket2.-detail4.JPG';">
-          <img src="jacket2.-detail5.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket2.-detail5.JPG';">
+
+        <!-- 橫向滾動縮圖列 -->
+        <div class="thumbnails-wrapper">
+          <div class="thumbnails">
+            <img src="jacket2.jpg" class="thumb active" onclick="changeImage(this)" onerror="this.onerror=null; this.src='jacket2.JPG';">
+            <img src="jacket2.-detail1.jpg" class="thumb" onclick="changeImage(this)" onerror="this.onerror=null; this.src='jacket2.-detail1.JPG';">
+            <img src="jacket2.-detail2.jpg" class="thumb" onclick="changeImage(this)" onerror="this.onerror=null; this.src='jacket2.-detail2.JPG';">
+            <img src="jacket2.-detail3.jpg" class="thumb" onclick="changeImage(this)" onerror="this.onerror=null; this.src='jacket2.-detail3.JPG';">
+            <img src="jacket2.-detail4.jpg" class="thumb" onclick="changeImage(this)" onerror="this.onerror=null; this.src='jacket2.-detail4.JPG';">
+            <img src="jacket2.-detail5.jpg" class="thumb" onclick="changeImage(this)" onerror="this.onerror=null; this.src='jacket2.-detail5.JPG';">
+          </div>
         </div>
       </div>
 
-      <!-- 右側商品資訊 -->
+      <!-- 商品資訊區 -->
       <div class="product-info">
         <h1 class="product-title">Vintage Jacket #2</h1>
         <div class="product-price">HKD $1,280</div>
         
-        <p style="color: #e0c0c0;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
+        <p style="color: #e0c0c0; font-size: 0.95rem;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
         
         <ul class="details-list">
           <li><strong>狀態 Condition：</strong>Vintage 古著良好狀態</li>
@@ -258,16 +257,14 @@
   </footer>
 
   <script>
-    function changeImage(src) {
-      document.getElementById('mainImg').src = src;
+    function changeImage(el) {
+      // 更換大圖
+      document.getElementById('mainImg').src = el.src;
+      
+      // 更新高亮狀態
       const thumbs = document.querySelectorAll('.thumb');
-      thumbs.forEach(thumb => {
-        if(thumb.src === src) {
-          thumb.classList.add('active');
-        } else {
-          thumb.classList.remove('active');
-        }
-      });
+      thumbs.forEach(thumb => thumb.classList.remove('active'));
+      el.classList.add('active');
     }
   </script>
 
