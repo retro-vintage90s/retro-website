@@ -6,14 +6,13 @@
   <title>Retro 舊物部 | Vintage & Archive Selection</title>
   <style>
     :root {
-      --bg-color: #080303;
-      --card-bg: #140707;
-      --accent-red: #8b0000;
-      --bright-red: #d62828;
-      --silver: #e0e0e0;
-      --silver-glow: rgba(224, 224, 224, 0.4);
-      --text-main: #f0f0f0;
-      --text-muted: #a09090;
+      /* 全局紅色調背景 */
+      --bg-color: #5c0606; 
+      --card-bg: #3b0303;
+      --accent-red: #ff3333;
+      --bright-red: #ff4d4d;
+      --text-main: #ffffff;
+      --text-muted: #e0c0c0;
     }
 
     body {
@@ -27,13 +26,14 @@
 
     /* 頂部跑馬燈 */
     .announcement-bar {
-      background-color: var(--bright-red);
+      background-color: #2b0202;
       color: #ffffff;
       font-size: 0.85rem;
       font-weight: bold;
       padding: 6px 0;
       overflow: hidden;
       white-space: nowrap;
+      border-bottom: 1px solid var(--accent-red);
     }
 
     .marquee-content {
@@ -49,8 +49,8 @@
 
     /* 頂部導航 */
     header {
-      background: linear-gradient(180deg, #1f0505 0%, var(--bg-color) 100%);
-      border-bottom: 1px solid var(--accent-red);
+      background-color: #3b0303;
+      border-bottom: 2px solid var(--bright-red);
       padding: 15px 20px;
       display: flex;
       justify-content: space-between;
@@ -69,7 +69,7 @@
     .brand-title {
       font-size: 1.1rem;
       font-weight: bold;
-      color: var(--text-main);
+      color: #ffffff;
       letter-spacing: 2px;
     }
 
@@ -80,7 +80,7 @@
     }
 
     .nav-links a {
-      color: var(--bright-red);
+      color: #ffcccc;
       text-decoration: none;
       transition: color 0.3s;
     }
@@ -92,8 +92,8 @@
 
     .lang-btn {
       background: transparent;
-      border: 1px solid var(--bright-red);
-      color: var(--text-main);
+      border: 1px solid #ffffff;
+      color: #ffffff;
       padding: 5px 12px;
       border-radius: 4px;
       cursor: pointer;
@@ -101,15 +101,15 @@
     }
 
     .lang-btn:hover {
-      background-color: var(--bright-red);
-      box-shadow: 0 0 10px var(--bright-red);
+      background-color: #ffffff;
+      color: var(--bg-color);
     }
 
     /* Hero 動態 Logo */
     .hero {
       text-align: center;
       padding: 40px 20px 20px;
-      background: radial-gradient(circle, #2d0a0a 0%, var(--bg-color) 70%);
+      background: radial-gradient(circle, #8a0b0b 0%, var(--bg-color) 80%);
     }
 
     .logo-container {
@@ -132,12 +132,12 @@
 
     .logo-silver {
       opacity: 0;
-      filter: drop-shadow(0 0 12px var(--silver-glow));
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
     }
 
     .logo-red {
       opacity: 1;
-      filter: drop-shadow(0 0 12px rgba(214, 40, 40, 0.6));
+      filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.5));
     }
 
     .logo-container:hover .logo-red {
@@ -151,8 +151,9 @@
 
     .slogan {
       font-size: 0.95rem;
-      color: var(--silver);
+      color: #ffffff;
       margin-top: 10px;
+      font-weight: 500;
     }
 
     /* 分類按鈕 Filter */
@@ -165,9 +166,9 @@
     }
 
     .filter-btn {
-      background-color: #1a0a0a;
-      border: 1px solid var(--accent-red);
-      color: var(--text-main);
+      background-color: #3b0303;
+      border: 1px solid #ff6666;
+      color: #ffffff;
       padding: 6px 16px;
       border-radius: 4px;
       cursor: pointer;
@@ -176,9 +177,10 @@
     }
 
     .filter-btn:hover, .filter-btn.active {
-      background-color: var(--bright-red);
-      border-color: var(--bright-red);
-      box-shadow: 0 0 8px rgba(214, 40, 40, 0.5);
+      background-color: #ffffff;
+      color: var(--bg-color);
+      border-color: #ffffff;
+      font-weight: bold;
     }
 
     /* 商品列表 */
@@ -190,10 +192,10 @@
 
     .section-title {
       font-size: 1.3rem;
-      border-left: 4px solid var(--bright-red);
+      border-left: 4px solid #ffffff;
       padding-left: 10px;
       margin-bottom: 20px;
-      color: var(--silver);
+      color: #ffffff;
     }
 
     .grid {
@@ -204,7 +206,7 @@
 
     .card {
       background-color: var(--card-bg);
-      border: 1px solid #2a0c0c;
+      border: 1px solid #730a0a;
       border-radius: 8px;
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
@@ -212,18 +214,18 @@
 
     .card:hover {
       transform: translateY(-5px);
-      border-color: var(--bright-red);
+      border-color: #ffffff;
     }
 
     .card-img {
       width: 100%;
       height: 240px;
-      background-color: #000;
+      background-color: #210202;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-muted);
-      border-bottom: 1px solid #2a0c0c;
+      border-bottom: 1px solid #730a0a;
     }
 
     .card-content {
@@ -233,25 +235,47 @@
     .card-title {
       font-size: 1rem;
       margin: 0 0 6px 0;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .card-price {
-      color: var(--bright-red);
+      color: #ff9999;
       font-size: 1.1rem;
       font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    /* IG Direct 按鈕樣式 */
+    .ig-btn {
+      display: block;
+      width: 100%;
+      padding: 8px 0;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.85rem;
+      border-radius: 4px;
+      box-sizing: border-box;
+      transition: opacity 0.3s;
+    }
+
+    .ig-btn:hover {
+      opacity: 0.9;
     }
 
     footer {
       text-align: center;
       padding: 25px;
-      border-top: 1px solid #2a0c0c;
+      border-top: 1px solid #730a0a;
       color: var(--text-muted);
       font-size: 0.85rem;
+      background-color: #210202;
     }
 
     footer a {
-      color: var(--bright-red);
+      color: #ff9999;
       text-decoration: none;
     }
   </style>
@@ -269,7 +293,7 @@
       <div class="brand-title">RETRO 舊物部</div>
       <div class="nav-links">
         <a href="#catalog">選品 Catalog</a>
-        <a href="https://www.instagram.com/retro_vintage90s/" target="_blank">Instagram</a>
+        <a href="https://www.instagram.com/direct/t/retro_vintage90s" target="_blank">IG Direct 聯絡</a>
       </div>
     </div>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
@@ -282,7 +306,7 @@
     </div>
     <div class="slogan" id="sloganText">專注於古著與經典選品 • 每款單品僅此一件</div>
 
-    <!-- 分類按鈕 (Filter) -->
+    <!-- 分類按鈕 Filter -->
     <div class="filter-container">
       <button class="filter-btn active">ALL 全部</button>
       <button class="filter-btn">90s Vintage</button>
@@ -300,6 +324,7 @@
         <div class="card-content">
           <h3 class="card-title">Vintage Jacket</h3>
           <div class="card-price">HKD $1,280</div>
+          <a href="https://www.instagram.com/direct/t/retro_vintage90s" target="_blank" class="ig-btn">IG Direct 購買 / 查詢</a>
         </div>
       </div>
 
@@ -308,6 +333,7 @@
         <div class="card-content">
           <h3 class="card-title">Retro Accessories</h3>
           <div class="card-price">HKD $580</div>
+          <a href="https://www.instagram.com/direct/t/retro_vintage90s" target="_blank" class="ig-btn">IG Direct 購買 / 查詢</a>
         </div>
       </div>
     </div>
