@@ -3,118 +3,251 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vintage Jacket | Retro 舊物部</title>
+  <title>Vintage Jacket #1 | Retro 舊物部</title>
   <style>
     :root {
-      --bg-color: #4a0404;
+      --bg-color: #4a0404; 
       --card-bg: #2d0202;
       --accent-red: #ff3333;
+      --bright-red: #ff4d4d;
       --text-main: #ffffff;
       --text-muted: #e0c0c0;
     }
 
     body {
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
     }
 
+    /* 頂部導航 */
+    header {
+      background-color: #2d0202;
+      border-bottom: 2px solid var(--bright-red);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .back-btn {
+      color: #ffcccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #ffffff;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+
+    /* 主內容區域 */
     .container {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 相冊圖片展示區 */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .main-img-container {
+      width: 100%;
+      height: 400px;
+      background-color: #1a0101;
+      border: 1px solid #5e0808;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .main-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnails {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .thumb {
+      width: 100%;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid #5e0808;
+      opacity: 0.7;
+      transition: opacity 0.3s, border-color 0.3s;
+    }
+
+    .thumb:hover, .thumb.active {
+      opacity: 1;
+      border-color: #ffffff;
+    }
+
+    /* 商品細節資訊區 */
+    .product-info {
       background-color: var(--card-bg);
       padding: 25px;
       border-radius: 8px;
       border: 1px solid #5e0808;
     }
 
-    .back-btn {
-      display: inline-block;
-      color: #ff9999;
-      text-decoration: none;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
     .product-title {
       font-size: 1.5rem;
       margin-top: 0;
+      color: #ffffff;
     }
 
     .product-price {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: #ff9999;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin: 15px 0;
     }
 
-    .image-gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .image-gallery img {
-      width: 100%;
-      border-radius: 6px;
-      border: 1px solid #5e0808;
-      display: block;
-    }
-
-    .product-desc {
-      line-height: 1.8;
+    .details-list {
+      margin: 20px 0;
+      padding-left: 20px;
       color: var(--text-muted);
-      margin-bottom: 25px;
-      border-top: 1px solid #5e0808;
-      padding-top: 15px;
     }
 
-    .ig-btn {
+    .details-list li {
+      margin-bottom: 8px;
+    }
+
+    /* IG 聯絡按鈕 */
+    .buy-btn {
       display: block;
       width: 100%;
       padding: 12px 0;
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       color: #ffffff;
       text-align: center;
-      text-decoration: none;
       font-weight: bold;
-      border-radius: 4px;
       font-size: 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      box-sizing: border-box;
+      margin-top: 25px;
+      transition: transform 0.2s;
+    }
+
+    .buy-btn:hover {
+      transform: scale(1.02);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+      border-top: 1px solid #5e0808;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background-color: #1f0101;
+    }
+
+    footer a {
+      color: #ff9999;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <a href="index.html" class="back-btn">← 返回主頁 Catalog</a>
+  <header>
+    <a href="index.html" class="back-btn">← 返回 Catalog</a>
+    <div class="brand-title">RETRO 舊物部</div>
+    <div></div>
+  </header>
 
-    <h1 class="product-title">90s Vintage Jacket</h1>
-    <div class="product-price">HKD $1,280</div>
+  <main class="container">
+    <div class="product-layout">
+      
+      <!-- 左側圖片相冊 -->
+      <div class="gallery">
+        <div class="main-img-container">
+          <img id="mainImg" src="jacket1.jpg" alt="Vintage Jacket #1" onerror="this.onerror=null; this.src='jacket1.JPG';">
+        </div>
+        <div class="thumbnails">
+          <img src="jacket1.jpg" class="thumb active" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket1.JPG';">
+          <img src="jacket1.-detail5.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket1.-detail5.JPG';">
+          <img src="jacket1.-detail6.jpg" class="thumb" onclick="changeImage(this.src)" onerror="this.onerror=null; this.src='jacket1.-detail6.JPG';">
+        </div>
+      </div>
 
-    <div class="image-gallery">
-      <img src="jacket1.-detail1.jpg" alt="細節圖 1">
-      <img src="jacket1.-detail2.jpg" alt="細節圖 2">
-      <img src="jacket1.-detail3.jpg" alt="細節圖 3">
-      <img src="jacket1.-detail4.jpg" alt="細節圖 4">
-      <img src="jacket1.-detail5.jpg" alt="細節圖 5">
-      <img src="jacket1.-detail6.jpg" alt="細節圖 6">
+      <!-- 右側商品資訊 -->
+      <div class="product-info">
+        <h1 class="product-title">Vintage Jacket #1</h1>
+        <div class="product-price">HKD $1,280</div>
+        
+        <p style="color: #e0c0c0;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
+        
+        <ul class="details-list">
+          <li><strong>狀態 Condition：</strong>Vintage 古著良好狀態</li>
+          <li><strong>尺寸 Size：</strong>Free Size（詳細尺寸歡迎私訊查詢）</li>
+          <li><strong>特點 Highlights：</strong>獨特古著質感、高品質布料、經典剪裁</li>
+          <li><strong>發貨地：</strong>Hong Kong 香港發貨</li>
+        </ul>
+
+        <a href="https://www.instagram.com/direct/t/retro_vintage90s" target="_blank" class="buy-btn">
+          💬 前往 IG DM 留貨 / 查詢
+        </a>
+      </div>
+
     </div>
+  </main>
 
-    <div class="product-desc">
-      <p><strong>【商品狀態與尺寸資訊】</strong></p>
-      <ul>
-        <li>尺寸：L（肩寬 50cm / 胸寬 58cm / 衣長 68cm）</li>
-        <li>成色：90% New，拉鏈運作順暢，無明顯破損或污漬</li>
-        <li>產地：Made in Japan</li>
-        <li>說明：90 年代古著經典款式，質感厚實，版型俐落。</li>
-      </ul>
-    </div>
+  <footer>
+    <p>RETRO 舊物部 • Instagram: <a href="https://www.instagram.com/retro_vintage90s/" target="_blank">@retro_vintage90s</a></p>
+    <p>&copy; 2026 Retro Vintage 90s. All rights reserved.</p>
+  </footer>
 
-    <a href="https://www.instagram.com/direct/t/retro_vintage90s" target="_blank" class="ig-btn">💬 私訊 IG DM 留貨 / 查詢</a>
-  </div>
+  <script>
+    function changeImage(src) {
+      document.getElementById('mainImg').src = src;
+      const thumbs = document.querySelectorAll('.thumb');
+      thumbs.forEach(thumb => {
+        if(thumb.src === src) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
