@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Retro 舊物部</title>
+  <title>Retro 舊物部 | Vintage & Archive Selection</title>
   <style>
     :root {
       --bg-color: #080303;
@@ -25,7 +25,7 @@
       line-height: 1.6;
     }
 
-    /* 頂部跑馬燈公告 */
+    /* 頂部跑馬燈 */
     .announcement-bar {
       background-color: var(--bright-red);
       color: #ffffff;
@@ -34,7 +34,6 @@
       padding: 6px 0;
       overflow: hidden;
       white-space: nowrap;
-      position: relative;
     }
 
     .marquee-content {
@@ -61,20 +60,41 @@
       z-index: 100;
     }
 
+    .nav-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
     .brand-title {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: var(--text-main);
       letter-spacing: 2px;
-      text-transform: uppercase;
-      text-shadow: 0 0 8px var(--accent-red);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      color: var(--bright-red);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
     }
 
     .lang-btn {
       background: transparent;
       border: 1px solid var(--bright-red);
       color: var(--text-main);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.3s;
@@ -85,7 +105,7 @@
       box-shadow: 0 0 10px var(--bright-red);
     }
 
-    /* Hero 動態 Logo 區塊 */
+    /* Hero 動態 Logo */
     .hero {
       text-align: center;
       padding: 40px 20px 20px;
@@ -94,8 +114,8 @@
 
     .logo-container {
       position: relative;
-      width: 280px;
-      height: 280px;
+      width: 260px;
+      height: 260px;
       margin: 0 auto 15px;
       cursor: pointer;
     }
@@ -130,27 +150,50 @@
     }
 
     .slogan {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--silver);
-      letter-spacing: 1px;
       margin-top: 10px;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    /* 分類按鈕 Filter */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 25px 0 15px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background-color: #1a0a0a;
+      border: 1px solid var(--accent-red);
+      color: var(--text-main);
+      padding: 6px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--bright-red);
+      border-color: var(--bright-red);
+      box-shadow: 0 0 8px rgba(214, 40, 40, 0.5);
     }
 
     /* 商品列表 */
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 10px 20px 40px;
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       border-left: 4px solid var(--bright-red);
       padding-left: 10px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       color: var(--silver);
-      text-shadow: 0 0 8px var(--accent-red);
     }
 
     .grid {
@@ -164,13 +207,12 @@
       border: 1px solid #2a0c0c;
       border-radius: 8px;
       overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, border-color 0.3s;
     }
 
     .card:hover {
       transform: translateY(-5px);
       border-color: var(--bright-red);
-      box-shadow: 0 5px 15px rgba(214, 40, 40, 0.3);
     }
 
     .card-img {
@@ -185,28 +227,32 @@
     }
 
     .card-content {
-      padding: 18px;
+      padding: 15px;
     }
 
     .card-title {
-      font-size: 1.1rem;
-      margin: 0 0 8px 0;
+      font-size: 1rem;
+      margin: 0 0 6px 0;
       color: var(--text-main);
     }
 
     .card-price {
       color: var(--bright-red);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 25px;
       border-top: 1px solid #2a0c0c;
       color: var(--text-muted);
       font-size: 0.85rem;
-      margin-top: 50px;
+    }
+
+    footer a {
+      color: var(--bright-red);
+      text-decoration: none;
     }
   </style>
 </head>
@@ -219,7 +265,13 @@
   </div>
 
   <header>
-    <div class="brand-title">RETRO 舊物部</div>
+    <div class="nav-left">
+      <div class="brand-title">RETRO 舊物部</div>
+      <div class="nav-links">
+        <a href="#catalog">選品 Catalog</a>
+        <a href="https://www.instagram.com/retro_vintage90s/" target="_blank">Instagram</a>
+      </div>
+    </div>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
   </header>
 
@@ -229,9 +281,17 @@
       <img src="logo-silver.png" alt="Retro 舊物部 Silver Logo" class="logo-silver">
     </div>
     <div class="slogan" id="sloganText">專注於古著與經典選品 • 每款單品僅此一件</div>
+
+    <!-- 分類按鈕 (Filter) -->
+    <div class="filter-container">
+      <button class="filter-btn active">ALL 全部</button>
+      <button class="filter-btn">90s Vintage</button>
+      <button class="filter-btn">Denim 丹寧</button>
+      <button class="filter-btn">Jacket 外套</button>
+    </div>
   </section>
 
-  <main class="container">
+  <main class="container" id="catalog">
     <h2 class="section-title" id="catalogTitle">選品 Catalog</h2>
     
     <div class="grid">
@@ -254,7 +314,8 @@
   </main>
 
   <footer>
-    &copy; 2026 Retro Vintage 90s. All rights reserved.
+    <p>RETRO 舊物部 • Instagram: <a href="https://www.instagram.com/retro_vintage90s/" target="_blank">@retro_vintage90s</a></p>
+    <p>&copy; 2026 Retro Vintage 90s. All rights reserved.</p>
   </footer>
 
   <script>
