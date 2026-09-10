@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vintage Jacket #1 | Retro 舊物部</title>
   <style>
     :root {
@@ -16,14 +16,11 @@
 
     * {
       box-sizing: border-box;
-      max-width: 100%;
     }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      overflow-x: hidden; /* 徹底防止整頁左右推移 */
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -39,16 +36,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
 
     .back-btn {
       color: #ffcccc;
       text-decoration: none;
       font-size: 0.9rem;
-      white-space: nowrap;
     }
 
     .brand-title {
@@ -56,42 +49,37 @@
       font-weight: bold;
       color: #ffffff;
       letter-spacing: 1px;
-      text-align: center;
     }
 
-    /* 主內容區域 */
+    /* 主內容容器 */
     .container {
-      width: 100%;
+      width: 92%;
       max-width: 800px;
-      margin: 0 auto;
-      padding: 12px;
+      margin: 16px auto;
     }
 
     .product-layout {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 16px;
-      width: 100%;
     }
 
     @media (min-width: 768px) {
-      .container {
-        padding: 20px;
-      }
       .product-layout {
+        display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 30px;
       }
     }
 
     .gallery {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      width: 100%;
     }
 
-    /* 大圖區域：支援手機左右滑動 */
+    /* 大圖區域：支援左右滑動 */
     .main-slider {
       display: flex;
       width: 100%;
@@ -99,9 +87,8 @@
       background-color: #1a0101;
       border: 1px solid #5e0808;
       border-radius: 8px;
-      overflow-x: auto;
+      overflow-x: scroll;
       scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -123,23 +110,23 @@
       object-position: center;
     }
 
-    /* 下方縮圖列 (僅允許縮圖區內部滑動) */
+    /* 下方縮圖列 (還原原本樣式) */
     .thumbnails-wrapper {
       width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
     }
 
     .thumbnails {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       width: max-content;
     }
 
     .thumb {
-      width: 65px;
-      height: 65px;
+      width: 70px;
+      height: 70px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
@@ -153,19 +140,18 @@
       border-color: #ff4d4d;
     }
 
-    /* 商品細節資訊區：自動自適應寬度 */
+    /* 商品資訊區 */
     .product-info {
       width: 100%;
       background-color: var(--card-bg);
       padding: 16px;
       border-radius: 8px;
       border: 1px solid #5e0808;
-      word-break: break-word;
     }
 
     .product-title {
       font-size: 1.3rem;
-      margin-top: 0;
+      margin: 0 0 8px 0;
       color: #ffffff;
     }
 
@@ -173,7 +159,7 @@
       font-size: 1.2rem;
       color: #ff9999;
       font-weight: bold;
-      margin: 10px 0;
+      margin-bottom: 12px;
     }
 
     .details-list {
@@ -203,7 +189,7 @@
 
     footer {
       text-align: center;
-      padding: 16px;
+      padding: 20px 16px;
       margin-top: 20px;
       border-top: 1px solid #5e0808;
       color: var(--text-muted);
@@ -224,7 +210,7 @@
     <div style="width: 50px;"></div>
   </header>
 
-  <main class="container">
+  <div class="container">
     <div class="product-layout">
       
       <!-- 相冊展示區 -->
@@ -255,7 +241,7 @@
         <h1 class="product-title">Vintage Jacket #1</h1>
         <div class="product-price">HKD $1,280</div>
         
-        <p style="color: #e0c0c0; font-size: 0.9rem;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
+        <p style="color: #e0c0c0; font-size: 0.9rem; margin: 0 0 10px 0;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
         
         <ul class="details-list">
           <li><strong>狀態 Condition：</strong>Vintage 古著良好狀態</li>
@@ -270,7 +256,7 @@
       </div>
 
     </div>
-  </main>
+  </div>
 
   <footer>
     <p>RETRO 舊物部 • Instagram: <a href="https://www.instagram.com/retro_vintage90s/" target="_blank">@retro_vintage90s</a></p>
