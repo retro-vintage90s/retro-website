@@ -16,11 +16,14 @@
 
     * {
       box-sizing: border-box;
+      max-width: 100%;
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      overflow-x: hidden; /* 徹底防止整頁左右推移 */
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -29,6 +32,7 @@
 
     /* 頂部導航 */
     header {
+      width: 100%;
       background-color: #2d0202;
       border-bottom: 2px solid var(--bright-red);
       padding: 12px 16px;
@@ -43,30 +47,37 @@
     .back-btn {
       color: #ffcccc;
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
     }
 
     .brand-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
       color: #ffffff;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
+      text-align: center;
     }
 
     /* 主內容區域 */
     .container {
+      width: 100%;
       max-width: 800px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 12px;
     }
 
     .product-layout {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 16px;
+      width: 100%;
     }
 
     @media (min-width: 768px) {
+      .container {
+        padding: 20px;
+      }
       .product-layout {
         grid-template-columns: 1fr 1fr;
         gap: 30px;
@@ -77,13 +88,14 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      width: 100%;
     }
 
-    /* 大圖區：支援手機左右滑動（Swipe） */
+    /* 大圖區域：支援手機左右滑動 */
     .main-slider {
       display: flex;
       width: 100%;
-      height: 360px;
+      height: 350px;
       background-color: #1a0101;
       border: 1px solid #5e0808;
       border-radius: 8px;
@@ -94,7 +106,7 @@
     }
 
     .main-slider::-webkit-scrollbar {
-      display: none; /* 隱藏大圖滾動條，保持整潔 */
+      display: none;
     }
 
     .slide {
@@ -102,34 +114,32 @@
       width: 100%;
       height: 100%;
       scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .slide img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* 全螢幕完全看得清楚，不被裁剪 */
+      object-fit: cover;
+      object-position: center;
     }
 
-    /* 下方縮圖列 */
+    /* 下方縮圖列 (僅允許縮圖區內部滑動) */
     .thumbnails-wrapper {
       width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 6px;
+      padding-bottom: 4px;
     }
 
     .thumbnails {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       width: max-content;
     }
 
     .thumb {
-      width: 70px;
-      height: 70px;
+      width: 65px;
+      height: 65px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
@@ -143,32 +153,34 @@
       border-color: #ff4d4d;
     }
 
-    /* 商品細節資訊區 */
+    /* 商品細節資訊區：自動自適應寬度 */
     .product-info {
+      width: 100%;
       background-color: var(--card-bg);
-      padding: 20px;
+      padding: 16px;
       border-radius: 8px;
       border: 1px solid #5e0808;
+      word-break: break-word;
     }
 
     .product-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       margin-top: 0;
       color: #ffffff;
     }
 
     .product-price {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #ff9999;
       font-weight: bold;
-      margin: 12px 0;
+      margin: 10px 0;
     }
 
     .details-list {
-      margin: 15px 0;
-      padding-left: 20px;
+      margin: 12px 0;
+      padding-left: 18px;
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .details-list li {
@@ -183,16 +195,16 @@
       color: #ffffff;
       text-align: center;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 0.95rem;
       border-radius: 6px;
       text-decoration: none;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      margin-top: 30px;
+      padding: 16px;
+      margin-top: 20px;
       border-top: 1px solid #5e0808;
       color: var(--text-muted);
       font-size: 0.8rem;
@@ -207,9 +219,9 @@
 <body>
 
   <header>
-    <a href="index.html" class="back-btn">← 返回 Catalog</a>
+    <a href="index.html" class="back-btn">← Catalog</a>
     <div class="brand-title">RETRO 舊物部</div>
-    <div></div>
+    <div style="width: 50px;"></div>
   </header>
 
   <main class="container">
@@ -217,8 +229,6 @@
       
       <!-- 相冊展示區 -->
       <div class="gallery">
-        
-        <!-- 手機左右滑動大圖 -->
         <div class="main-slider" id="slider">
           <div class="slide"><img src="jacket1.jpg" onerror="this.onerror=null; this.src='jacket1.JPG';"></div>
           <div class="slide"><img src="jacket1.-detail1.jpg" onerror="this.onerror=null; this.src='jacket1.-detail1.JPG';"></div>
@@ -228,7 +238,6 @@
           <div class="slide"><img src="jacket1.-detail5.jpg" onerror="this.onerror=null; this.src='jacket1.-detail5.JPG';"></div>
         </div>
 
-        <!-- 下方點擊 / 對應滑動的縮圖 -->
         <div class="thumbnails-wrapper">
           <div class="thumbnails">
             <img src="jacket1.jpg" class="thumb active" onclick="goToSlide(0)" onerror="this.onerror=null; this.src='jacket1.JPG';">
@@ -239,7 +248,6 @@
             <img src="jacket1.-detail5.jpg" class="thumb" onclick="goToSlide(5)" onerror="this.onerror=null; this.src='jacket1.-detail5.JPG';">
           </div>
         </div>
-
       </div>
 
       <!-- 商品資訊區 -->
@@ -247,7 +255,7 @@
         <h1 class="product-title">Vintage Jacket #1</h1>
         <div class="product-price">HKD $1,280</div>
         
-        <p style="color: #e0c0c0; font-size: 0.95rem;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
+        <p style="color: #e0c0c0; font-size: 0.9rem;">經典古著外套，版型剪裁極佳，質感優良。每款單品僅此一件。</p>
         
         <ul class="details-list">
           <li><strong>狀態 Condition：</strong>Vintage 古著良好狀態</li>
@@ -273,7 +281,6 @@
     const slider = document.getElementById('slider');
     const thumbs = document.querySelectorAll('.thumb');
 
-    // 點擊縮圖跳轉到對應的大圖
     function goToSlide(index) {
       const slideWidth = slider.clientWidth;
       slider.scrollTo({
@@ -283,7 +290,6 @@
       updateActiveThumb(index);
     }
 
-    // 監聽手機滑動大圖時，同步更新縮圖高亮
     slider.addEventListener('scroll', () => {
       const slideWidth = slider.clientWidth;
       const index = Math.round(slider.scrollLeft / slideWidth);
